@@ -1,46 +1,185 @@
-*{margin:0;padding:0;box-sizing:border-box}
-body{background-color:#fff;display:flex;justify-content:center;align-items:center;height:100vh;margin:0}
-a{color:currentcolor;outline:none;text-decoration:none;-webkit-touch-callout:none}
-a:hover{text-decoration:none}
-*:focus{outline:none}
+/* Reset and Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+a {
+    color: currentcolor;
+    outline: none;
+    text-decoration: none;
+    -webkit-touch-callout: none;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+*:focus {
+    outline: none;
+}
 
 /* Button Styles */
-.o-button{font-size:14px;font-family:"IBM Plex Sans Condensed",sans-serif;font-weight:500;display:inline-block;padding:16px 24px;color:#fff;position:relative;overflow:hidden;text-transform:uppercase;line-height:1;-webkit-user-select:none;-moz-user-select:none;user-select:none}
-.o-button:has(.o-icon){padding-right:19.2px}
-.o-button:before{content:"";background:#0f131c;z-index:-1;position:absolute;top:0;left:0;width:100%;height:100%;clip-path:polygon(10px 0,100% 0,100% 0,100% calc(100% - 10px),calc(100% - 10px) 100%,0 100%,0 100%,0 10px);transition:clip-path 1s cubic-bezier(.19,1,.22,1)}
-.o-button:hover:before{clip-path:polygon(0 0,calc(100% - 10px) 0,100% 10px,100% 100%,100% 100%,10px 100%,0 calc(100% - 10px),0 0)}
+.o-button {
+    font-size: clamp(12px, 1.2vw, 16px);
+    font-weight: 500;
+    display: inline-block;
+    padding: clamp(12px, 3vw, 16px) clamp(18px, 6vw, 24px);
+    color: #fff;
+    position: relative;
+    overflow: hidden;
+    text-transform: uppercase;
+    line-height: 1;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+}
+
+.o-button:has(.o-icon) {
+    padding-right: clamp(14px, 4vw, 19.2px);
+}
+
+.o-button:before {
+    content: "";
+    background: #0f131c;
+    z-index: -1;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    clip-path: polygon(10px 0, 100% 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 100%, 0 10px);
+    transition: clip-path 1s cubic-bezier(.19, 1, .22, 1);
+}
+
+.o-button:hover:before {
+    clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 100% 100%, 10px 100%, 0 calc(100% - 10px), 0 0);
+}
 
 /* Button Spans */
-.o-button>span:nth-child(1),.o-button>span:nth-child(2){pointer-events:none}
-.o-button>span>span{display:flex;transition:transform 1s cubic-bezier(.17,.67,.1,.99)}
-.o-button>span>span span{background:#0f131c;z-index:1}
-.o-button>span:nth-child(2){display:flex;align-items:center}
+.o-button > span:nth-child(1),
+.o-button > span:nth-child(2) {
+    pointer-events: none;
+}
+
+.o-button > span > span {
+    display: flex;
+    transition: transform 1s cubic-bezier(.17, .67, .1, .99);
+}
+
+.o-button > span > span span {
+    background: #0f131c;
+    z-index: 1;
+}
+
+.o-button > span:nth-child(2) {
+    display: flex;
+    align-items: center;
+}
 
 /* Icon Styles */
-.o-button>span>span .o-icon:first-child{position:absolute;transform:translate(-3px,1px);transition:transform 1s cubic-bezier(.17,.67,.1,.99)}
-.o-button>span>span .o-icon:last-child{transition:transform 1s cubic-bezier(.17,.67,.1,.99)}
-.o-icon{display:inline-block;width:16px;flex-shrink:0;fill:none;font-size:0;stroke:currentcolor;stroke-width:1.4px;vertical-align:middle}
+.o-button > span > span .o-icon:first-child {
+    position: absolute;
+    transform: translate(-3px, 1px);
+    transition: transform 1s cubic-bezier(.17, .67, .1, .99);
+}
+
+.o-button > span > span .o-icon:last-child {
+    transition: transform 1s cubic-bezier(.17, .67, .1, .99);
+}
+
+.o-icon {
+    display: inline-block;
+    width: clamp(12px, 2vw, 16px);
+    flex-shrink: 0;
+    fill: none;
+    font-size: 0;
+    stroke: currentcolor;
+    stroke-width: clamp(1px, 0.3vw, 1.4px);
+    vertical-align: middle;
+}
 
 /* Corner Lines */
-.o-button>span:nth-child(1):before,.o-button>span:nth-child(1):after,.o-button>span:nth-child(2):before,.o-button>span:nth-child(2):after{content:"";width:2px;height:10px;background:currentColor;z-index:1;position:absolute;transform-origin:50% 50%;transition:transform 1s cubic-bezier(.19,1,.22,1),opacity 1s cubic-bezier(.19,1,.22,1)}
-.o-button>span:nth-child(1):before{top:10px;left:10px;transform:translate(-50%,-50%) rotate(45deg)}
-.o-button>span:nth-child(1):after{top:calc(100% - 10px);left:calc(100% - 10px);transform:translate(-50%,-50%) rotate(45deg)}
-.o-button>span:nth-child(2):before{top:10px;left:calc(100% - 10px);transform:translate(calc(-50% - 20px),calc(-50% - 20px)) rotate(-45deg);opacity:0}
-.o-button>span:nth-child(2):after{top:calc(100% - 10px);left:10px;transform:translate(calc(-50% + 20px),calc(-50% + 20px)) rotate(-45deg);opacity:0}
+.o-button > span:nth-child(1):before,
+.o-button > span:nth-child(1):after,
+.o-button > span:nth-child(2):before,
+.o-button > span:nth-child(2):after {
+    content: "";
+    width: 2px;
+    height: 10px;
+    background: currentColor;
+    z-index: 1;
+    position: absolute;
+    transform-origin: 50% 50%;
+    transition: transform 1s cubic-bezier(.19, 1, .22, 1), opacity 1s cubic-bezier(.19, 1, .22, 1);
+}
+
+.o-button > span:nth-child(1):before {
+    top: 10px;
+    left: 10px;
+    transform: translate(-50%, -50%) rotate(45deg);
+}
+
+.o-button > span:nth-child(1):after {
+    top: calc(100% - 10px);
+    left: calc(100% - 10px);
+    transform: translate(-50%, -50%) rotate(45deg);
+}
+
+.o-button > span:nth-child(2):before {
+    top: 10px;
+    left: calc(100% - 10px);
+    transform: translate(calc(-50% - 20px), calc(-50% - 20px)) rotate(-45deg);
+    opacity: 0;
+}
+
+.o-button > span:nth-child(2):after {
+    top: calc(100% - 10px);
+    left: 10px;
+    transform: translate(calc(-50% + 20px), calc(-50% + 20px)) rotate(-45deg);
+    opacity: 0;
+}
 
 /* Hover Effects */
-.o-button:hover>span:nth-child(2)>span{transform:translate(14.4px)}
-.o-button:hover>span:nth-child(2)>span div:first-child{transform:none}
-.o-button:hover>span:nth-child(2)>span .o-icon:first-child{transform:translate(-16px)}
-.o-button:hover>span:nth-child(2)>span .o-icon:last-child{transform:translate(-14px)}
-.o-button:hover>span:nth-child(1):before{transform:translate(calc(-50% + 20px),calc(-50% - 20px)) rotate(45deg);opacity:0}
-.o-button:hover>span:nth-child(1):after{transform:translate(calc(-50% - 20px),calc(-50% + 20px)) rotate(45deg);opacity:1}
-.o-button:hover>span:nth-child(2):before{transform:translate(-50%,-50%) rotate(-45deg);opacity:1}
-.o-button:hover>span:nth-child(2):after{transform:translate(-50%,-50%) rotate(-45deg);opacity:1}
-
-/* Responsive */
-@media (max-width:767.98px){
-.o-button{padding:12.8px 19.2px}
-.o-button:has(.o-icon){padding-right:16px}
+.o-button:hover > span:nth-child(2) > span {
+    transform: translate(14.4px);
 }
+
+.o-button:hover > span:nth-child(2) > span .o-icon:first-child {
+    transform: translate(-16px);
+}
+
+.o-button:hover > span:nth-child(2) > span .o-icon:last-child {
+    transform: translate(-14px);
+}
+
+.o-button:hover > span:nth-child(1):before {
+    transform: translate(calc(-50% + 20px), calc(-50% - 20px)) rotate(45deg);
+    opacity: 0;
+}
+
+.o-button:hover > span:nth-child(1):after {
+    transform: translate(calc(-50% - 20px), calc(-50% + 20px)) rotate(45deg);
+    opacity: 1;
+}
+
+.o-button:hover > span:nth-child(2):before {
+    transform: translate(-50%, -50%) rotate(-45deg);
+    opacity: 1;
+}
+
+.o-button:hover > span:nth-child(2):after {
+    transform: translate(-50%, -50%) rotate(-45deg);
+    opacity: 1;
+}
+
 
