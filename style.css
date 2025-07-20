@@ -1,0 +1,142 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@700&display=swap');
+
+body {
+    font-family: 'IBM Plex Sans', Arial, sans-serif;
+    background-color: #0F131C;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.button {
+    --radius: 10px;
+    color: #0F131C;
+    font-family: 'IBM Plex Sans', Arial, sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    border: none;
+    border-radius: 0px;
+    padding: 18px 20px;
+    cursor: pointer;
+    text-decoration: none;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    display: inline-flex;
+    align-items: flex-start;
+    flex-direction: row;
+    position: relative;
+    overflow: hidden;
+    background: none;
+    background-color: rgba(255, 255, 255, 0);
+    /* ...existing code... */
+}
+
+/* Corner lines */
+.button .corner-line {
+    position: absolute;
+    width: 18px;
+    height: 18px;
+    pointer-events: none;
+    z-index: 2;
+}
+.button .corner-line.left {
+    top: 6px;
+    left: 6px;
+    transform: rotate(-5deg);
+}
+.button .corner-line.right {
+    bottom: 5px;
+    right: 6px;
+    transform: rotate(90deg) scaleX(-1);
+}
+.button .corner-line svg {
+    width: 18px;
+    height: 18px;
+    display: block;
+}
+/* Add position: relative to .button for absolute children */
+.button { position: relative; }
+
+.button::before {
+    content: "";
+    background: white;
+    z-index: -1;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    clip-path: polygon(var(--radius) 0,100% 0,100% 0,100% calc(100% - var(--radius)),calc(100% - var(--radius)) 100%,0 100%,0 100%,0 var(--radius));
+    transition: clip-path 1s cubic-bezier(.19, 1, .22, 1);
+}
+
+.button:hover::before {
+    clip-path: polygon(0 0,calc(100% - var(--radius)) 0,100% var(--radius),100% 100%,100% 100%,var(--radius) 100%,0 calc(100% - var(--radius)),0 0);
+}
+
+
+/* Right arrow (default) */
+.button::after {
+    content: "";
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    margin-left: 3px;
+    margin-right: 0;
+    background: url('data:image/svg+xml;utf8,<svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><polyline points="4,20 20,4" stroke="%230F131C" stroke-width="3.5" stroke-linecap="round"/><line x1="8" y1="4" x2="20" y2="4" stroke="%230F131C" stroke-width="3.5" stroke-linecap="round"/><line x1="20" y1="4" x2="20" y2="16" stroke="%230F131C" stroke-width="3.5" stroke-linecap="round"/></svg>') no-repeat center center/contain;
+    vertical-align: top;
+    top: 2px;
+    position: relative;
+    opacity: 1;
+    pointer-events: none;
+    transition: none;
+}
+
+
+
+/* Add left arrow span for hover effect */
+.button .arrow-left {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    margin-right: -8px;
+    margin-left: 0;
+    background: url('data:image/svg+xml;utf8,<svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><polyline points="4,20 20,4" stroke="%230F131C" stroke-width="3.5" stroke-linecap="round"/><line x1="8" y1="4" x2="20" y2="4" stroke="%230F131C" stroke-width="3.5" stroke-linecap="round"/><line x1="20" y1="4" x2="20" y2="16" stroke="%230F131C" stroke-width="3.5" stroke-linecap="round"/></svg>') no-repeat center center/contain;
+    vertical-align: top;
+    top: 2px;
+    position: relative;
+    opacity: 1;
+    pointer-events: auto;
+    transition: none;
+}
+
+
+.arrow-icon {
+    width: 18px;
+    height: 18px;
+    margin-left: 8px;
+    vertical-align: top;
+    position: relative;
+    top: 2px;
+}
+
+span.button-text {
+    background-color: #ffffff;
+    padding: 0px 2px;
+    z-index: 1;
+    transition: transform 0.4s cubic-bezier(0.4,0,0.2,1);
+}
+.button:hover .button-text {
+    transform: translateX(12px);
+}
+
+
+
+
